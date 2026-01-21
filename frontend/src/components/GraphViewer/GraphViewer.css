@@ -1,0 +1,43 @@
+.graph-section {
+  flex: 1;
+  min-height: 0;
+  border-bottom: 2px solid #e0e0e0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-title {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1rem;
+  color: #2c3e50;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.graph-container {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.graph-loading,
+.graph-error,
+.graph-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+}
+
+.graph-error {
+  color: #721c24;
+  background: #f8d7da;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 4px;
+}
