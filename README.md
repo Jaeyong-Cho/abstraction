@@ -116,10 +116,6 @@ abstraction/
 
 ## Philosophy
 
-From the research on abstraction:
-
-> "추상화는 기본값이지만, 예측이 어긋나기 시작하면 실행·상태·시간 축을 따라 설명이 가능해질 때까지만 정확히 내려가야 한다."
-
 When debugging:
 1. Start at the highest abstraction level (entry point)
 2. Follow the execution path
@@ -157,93 +153,6 @@ python -m cli.main index mycode.py
 python -m cli.main graph
 ```
 
-## Web Interface (Visual)
-
-시각적으로 호출 그래프를 탐색하고 각 함수의 추상화 예측을 기록할 수 있습니다:
-
-```bash
-# 웹 서버 시작 (기본 포트 5000)
-python -m cli.main serve
-
-# 다른 포트 사용
-python -m cli.main serve 8080
-```
-
-브라우저에서 `http://localhost:5000`을 열면:
-- **인터랙티브 그래프**: 함수 간 호출 관계를 시각적으로 탐색
-- **예측 기록**: 각 함수를 클릭하여 입력/출력 예측을 기록
-- **추상화 레벨 설정**: Entry Point, High, Medium, Low, System 중 선택
-- **색상 표시**: 
-  - 녹색: 예측이 기록된 함수
-  - 주황색: 계약만 있는 함수
-  - 회색: 계약이 없는 함수
-
-## 시각화 예시 (Terminal)
-
-시스템은 호출 그래프를 텍스트 트리로 시각화합니다:
-
-```bash
-# 기본 사용
-python -m cli.main graph
-
-# 특정 함수부터
-python -m cli.main graph --entry main
-
-# 데모 실행
-python demo_visualization.py
-```
-
-### 출력 예시
-
-```
-======================================================================
-Call Graph Statistics
-======================================================================
-Total functions: 6
-Total calls: 5
-Average calls per function: 0.83
-
-Entry Points: main
-
-======================================================================
-Call Tree from 'main':
-======================================================================
-- main
-  - process_data
-    - calculate_intermediate
-    - apply_transformation
-  - format_result
-  - display_output
-```
-
-### 추상화 레벨 해석
-
-이 트리는 추상화 레벨을 시각적으로 보여줍니다:
-
-- **Level 0** (Entry Point): `main` - 프로그램 진입점
-- **Level 1** (High-Level): `process_data`, `format_result`, `display_output` - 비즈니스 로직
-- **Level 2** (Mid-Level): `calculate_intermediate`, `apply_transformation` - 세부 연산
-
-### 디버깅 활용
-
-예측이 틀렸을 때:
-1. **Level 0**에서 시작 → 예상과 다름
-2. **Level 1**로 내려감 → `process_data` 확인
-3. **Level 2**로 내려감 → `apply_transformation`에서 버그 발견
-4. 수정 후 재추상화
-
-더 자세한 시각화 가이드는 **VISUALIZATION.md**를 참조하세요.
-
-## Testing
-
-All tests pass:
-```bash
-pytest                  # Run all 32 tests
-pytest -m unit         # Unit tests only
-pytest -m integration  # Integration tests
-pytest --cov           # With coverage
-```
-
 ## Design Principles
 
 This project follows strict design principles:
@@ -275,7 +184,3 @@ All features implemented and tested:
 - ✓ Visualization
 - ✓ Complete test suite
 - ✓ Documentation and examples
-
-## License
-
-This is a demonstration project for abstraction-level tracking in software development.
